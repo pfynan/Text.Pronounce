@@ -21,6 +21,7 @@ module Text.Pronounce (
     , initDict
     , stdDict
     , runPronounce
+    , myDict
     -- * Basic Functions
     , phonesForEntry
     , stressesForEntry
@@ -43,7 +44,9 @@ import Text.Pronounce.ParseDict
 import Control.Monad.Reader
 import Data.Char (isDigit)
 import qualified Data.Text as T
-import qualified Data.Map as Map
+import qualified Data.Map.Strict as Map
+import qualified Language.Haskell.TH.Syntax as TH
+import Instances.TH.Lift
 
 -- | We are using the Reader monad to perform computations in the context of the
 -- CMU dictionary without having to pass it in or worry about initializing every time
